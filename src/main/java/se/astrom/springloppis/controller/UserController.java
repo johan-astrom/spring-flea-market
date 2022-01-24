@@ -1,5 +1,7 @@
 package se.astrom.springloppis.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import java.util.Optional;
 public class UserController {
 
     private UserService userService;
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -22,6 +25,13 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserEntity> createUser(@RequestBody UserEntity userEntity){
         var createdUser = userService.createUser(userEntity);
+
+        logger.trace("TRACE level logging.");
+        logger.debug("DEBUG level logging.");
+        logger.info("INFO level logging.");
+        logger.warn("WARN level logging.");
+        logger.error("ERROR level logging.");
+
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
