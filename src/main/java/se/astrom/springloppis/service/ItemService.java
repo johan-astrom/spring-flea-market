@@ -11,10 +11,12 @@ import java.util.Optional;
 @Service
 public class ItemService {
 
-    ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
+    private final BeanScopesDemo beanScopesDemo;
 
-    public ItemService(ItemRepository itemRepository){
+    public ItemService(ItemRepository itemRepository, BeanScopesDemo beanScopesDemo){
         this.itemRepository = itemRepository;
+        this.beanScopesDemo = beanScopesDemo;
     }
 
     public ItemEntity createItem(ItemEntity itemEntity){

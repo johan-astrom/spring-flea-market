@@ -11,10 +11,12 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    BeanScopesDemo beanScopesDemo;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, BeanScopesDemo beanScopesDemo) {
         this.userRepository = userRepository;
+        this.beanScopesDemo = beanScopesDemo;
     }
 
     public UserEntity createUser(UserEntity userEntity) {

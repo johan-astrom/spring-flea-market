@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import se.astrom.springloppis.entity.UserEntity;
+import se.astrom.springloppis.service.BeanScopesDemo;
 import se.astrom.springloppis.service.UserService;
 
 import java.util.Optional;
@@ -15,8 +16,8 @@ import java.util.Optional;
 @RequestMapping("users")
 public class UserController {
 
-    private UserService userService;
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final UserService userService;
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UserService userService) {
         this.userService = userService;
