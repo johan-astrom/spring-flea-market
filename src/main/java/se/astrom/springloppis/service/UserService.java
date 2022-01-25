@@ -1,6 +1,7 @@
 package se.astrom.springloppis.service;
 
 import org.apache.catalina.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.astrom.springloppis.entity.UserEntity;
 import se.astrom.springloppis.repository.UserRepository;
@@ -13,6 +14,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     BeanScopesDemo beanScopesDemo;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public UserService(UserRepository userRepository, BeanScopesDemo beanScopesDemo) {
         this.userRepository = userRepository;
@@ -20,6 +22,7 @@ public class UserService {
     }
 
     public UserEntity createUser(UserEntity userEntity) {
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         return userRepository.save(userEntity);
     }
 
